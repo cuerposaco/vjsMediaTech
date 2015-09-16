@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="vendor/video.js/video-js.css">
+	<script src="libs/shaka-player.compiled.js"></script>
+	<script src="vendor/video.js/video.js"></script>
+	<script src="src/videojs.myTech.js"></script>
+</head>
+<body>
+	<div id="videocontainer">
+		<video id="video"
+         class="video-js vjs-default-skin"
+         height="300"
+         width="600"
+         controls
+         autoplay
+         data-setup='{ "techOrder": ["shaka","html5"] }'>
+		    <p>
+		      Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
+		    </p>
+		    <source src="//storage.googleapis.com/widevine-demo-media/sintel-1080p/dash.mpd" type='video/mp4'/>
+		    <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+		 </video>
+	</div>
+</body>
+</html>
