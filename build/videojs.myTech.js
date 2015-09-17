@@ -41,7 +41,7 @@ videojs.Shaka = videojs.MediaTechController.extend({
 		*	Creacion del elemento contenedor de la technologia
 		*/
 		this.playerEl_.className += ' vjs-Shaka';
-		this.Tech_id = this.player_.id() + '_Shaka_api';
+		this.Tech_id = this.player_.id() + '_html5_api';
 		this.Tech_el = videojs.Component.prototype.createEl('video', {
 			id: this.Tech_id,
 			className: 'vjs-tech'
@@ -81,12 +81,25 @@ videojs.Shaka.prototype.startShaka=function(){
 	var self = this;
 	player.load(source).then(function() {
 		self.triggerReady();
+		//player.selectTextTrack(55);
+  		//player.enableTextTrack(true);
 		if(self.player_.options()['autoplay']){
 			self.play();
 		}
 	});
 }
 
+
+videojs.Shaka.prototype.src = function(source){
+	console.log('Pidiendo nuevo source:',source);
+};
+videojs.Shaka.prototype.setSrc = function(source){
+	console.log('[setSrc] Pidiendo nuevo source:',source);
+};
+
+/**
+*	Playback Methods
+*/
 videojs.Shaka.prototype.play = function(){
 	this.player_.trigger('playing');
 	this.player_.trigger('play');
@@ -101,16 +114,27 @@ videojs.Shaka.prototype.pause = function(){
 videojs.Shaka.prototype.paused = function(){
 	return Boolean(this.state);
 };
+
+/**
+*	TimeRange Methods
+*/
 videojs.Shaka.prototype.duration = function(){
 	return this.shaka_video.duration;
 };
-videojs.Shaka.prototype.buffered = function(){};
 videojs.Shaka.prototype.currentTime = function(){
 	return this.shaka_video.currentTime;
 };
 videojs.Shaka.prototype.setCurrentTime = function (seconds){
 	this.shaka_video.currentTime = seconds;
 };
+
+videojs.Shaka.prototype.buffered = function(){
+	return videojs.createTimeRange(0,this.shaka_player.getStreamBufferSize());
+};
+
+/**
+*	Volume Methods
+*/
 videojs.Shaka.prototype.volume = function(){
 	return this.shaka_video.volume;
 };
@@ -123,11 +147,12 @@ videojs.Shaka.prototype.muted = function(){
 videojs.Shaka.prototype.setMuted = function (muted){
 	this.shaka_video.muted = muted;
 };
+
+/**
+*	FullScreen Methods
+*/
 videojs.Shaka.prototype.supportsFullScreen = function(){
 	return true;
-};
-videojs.Shaka.prototype.buffered = function(){
-	return videojs.createTimeRange(0,this.shaka_player.getStreamBufferSize());
 };
 
 
@@ -159,7 +184,9 @@ videojs.Shaka.prototype.buffered = function(){
 //   }
 // })();
 
-// is supported on all platforms
+/** 
+* Tech support Testing 
+*/
 videojs.Shaka.isSupported = function() {
 	// Instalamos los polyfills para poder comprobar si el navegador soporta la Tech
 	shaka.polyfill.installAll(); 
@@ -170,7 +197,8 @@ videojs.Shaka.isSupported = function() {
 // You can use video/xxx as a media in your HTML5 video to specify the source
 videojs.Shaka.canPlaySource = function(srcObj) {
 	var mpegDashRE = /\.mpd/i;
-	return mpegDashRE.test(srcObj.src);
+	var webmRE = /\.webm/i;
+	return mpegDashRE.test(srcObj.src) || webmRE.test(srcObj.src);
 	//return 'maybe';
 };
 

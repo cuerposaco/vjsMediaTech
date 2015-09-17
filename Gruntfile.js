@@ -81,5 +81,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-bower-task');
 	grunt.loadNpmTasks('grunt-babel');
 
-	grunt.registerTask('default',[ 'bower', 'browserify', 'connect', 'watch']);
+	grunt.registerTask('default',[ /*'bower', 'browserify',*/ 'connect', 'watch']);
 }

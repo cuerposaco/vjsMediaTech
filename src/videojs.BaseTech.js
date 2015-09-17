@@ -54,17 +54,29 @@ videojs.Shaka = videojs.MediaTechController.extend({
 	}
 });
 
+/**
+*	Playback Methods
+*/
 videojs.Shaka.prototype.play = function(){};
 videojs.Shaka.prototype.pause = function(){};
 videojs.Shaka.prototype.paused = function(){};
+/**
+*	TimeRange Methods
+*/
 videojs.Shaka.prototype.duration = function(){};
 videojs.Shaka.prototype.buffered = function(){};
 videojs.Shaka.prototype.currentTime = function(){};
 videojs.Shaka.prototype.setCurrentTime = function (seconds){};
+/**
+*	Volume Methods
+*/
 videojs.Shaka.prototype.volume = function(){};
 videojs.Shaka.prototype.setVolume = function (volume){};
 videojs.Shaka.prototype.muted = function(){};
 videojs.Shaka.prototype.setMuted = function (muted){};
+/**
+*	FullScreen Methods
+*/
 videojs.Shaka.prototype.supportsFullScreen = function(){};
 
 // (function(){
@@ -95,7 +107,9 @@ videojs.Shaka.prototype.supportsFullScreen = function(){};
 //   }
 // })();
 
-// is supported on all platforms
+/** 
+* Tech support Testing 
+*/
 videojs.Shaka.isSupported = function() {
 	return true;
 };
