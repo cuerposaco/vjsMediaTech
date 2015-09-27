@@ -3,11 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="vendor/video.js/video-js.css">
-	<script src="libs/shaka-player.compiled.js"></script>
-	<script src="vendor/video.js/video.js"></script>
-	<script src="src/videojs.myTech.js"></script>
-	<script src="vendor/a3mod_player/a3mod_player.min.js"></script>
+	<link rel="stylesheet" href="/vendor/video.js/video-js.css">
+	<link rel="stylesheet" href="/src/vjsNext.css">
+	<script src="/libs/shaka-player.compiled.js"></script>
+	<script src="/vendor/video.js/video.js"></script>
+	<script src="/src/videojs.myTechHtml5.js"></script>
+	<!--
+	<script src="/vendor/a3mod_player/a3mod_player.min.js"></script>
+	-->
+	<script src="/src/vjsNextPlugin.js"></script>
 </head>
 <body>
 	<div id="videocontainer">
@@ -17,13 +21,13 @@
          width="600"
          controls
          autoplay
-         data-setup='{ "techOrder": ["shaka","html5"] }'>
+         data-setup='{ "techOrder": ["html5"], "plugins":{ "nextRelated":{}} }'>
 		    <p>
 		      Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
 		    </p>
-		    <source src="//storage.googleapis.com/widevine-demo-media/sintel-multicodec-4k/dash.mpd" type='video/mp4'/>
+		    <source src="https://shaka-player-demo.appspot.com/assets/angel_one.mpd" 
+		    type='application/dash+xml'/>
 		    <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-		    <track src=""></track>
 		 </video>
 	</div>
 </body>

@@ -13,10 +13,14 @@
     "tests"
   ],
   "dependencies": {
-    "a3mod_player": "git+ssh://multi@interdeploy1/home/multi/front/modules/player_es6#master",
-    "dash.js": "~1.1.1",
     "video.js": "~4.12.11",
     "dash.js": "git+https://github.com/Dash-Industry-Forum/dash.js.git",
     "videojs-contrib-dash": "git+https://github.com/videojs/videojs-contrib-dash.git"
+  },
+  "exportsOverride":{
+    "video.js":{
+      "./":"dist/video-js/*.*",
+      "font":"dist/video-js/font/*"
+    }
   }
 }

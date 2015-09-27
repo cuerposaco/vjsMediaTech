@@ -1,0 +1,30 @@
+.vjs-wall-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,.7);
+    top: 0;
+    left: 0;
+}
+
+.vjs-wall-container-item {
+    display: inline-block;
+    width: 25%;
+    height: 33.3%;
+    position:relative;
+}
+
+.vjs-wall-container-item a {
+    width: 100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    text-decoration:none;
+}
+
+.vjs-videowall-container-item-text-title {
+    color: white;
+    text-align: center;
+}

@@ -73,28 +73,28 @@
 
     // But make a fresh MediaPlayer each time the sourceHandler is used
     //this.mediaPlayer_ = new MediaPlayer(Html5DashJS.context_);
-    shaka.polyfill.installAll(); 
+    
     this.mediaPlayer_ = new shaka.player.Player(this.el_);
     this.mediaPlayer_.addEventListener('error', function(event) {
-		console.error(event);
-	});
-	var mpdUrl =manifestSource; //'https://turtle-tube.appspot.com/t/t2/dash.mpd';
-	var estimator = new shaka.util.EWMABandwidthEstimator();
-	var source = new shaka.player.DashVideoSource(mpdUrl, null, estimator);
+  		console.error(event);
+  	});
+  	var mpdUrl =manifestSource; //'https://turtle-tube.appspot.com/t/t2/dash.mpd';
+  	var estimator = new shaka.util.EWMABandwidthEstimator();
+  	var source = new shaka.player.DashVideoSource(mpdUrl, null, estimator);
 
-	// Load the source into the Player.
-	// Then query the video tracks to display in the videoTracks list element.
-	// Resize the video element to match the aspect ratio of the active track.
-	// Finally, begin playback.
-	var self = this;
-	this.mediaPlayer_.load(source).then(function() {
-		self.tech_.triggerReady();
-		//player.selectTextTrack(55);
-  		//player.enableTextTrack(true);
-		if(options['autoplay']){
-			self.play();
-		}
-	});
+  	// Load the source into the Player.
+  	// Then query the video tracks to display in the videoTracks list element.
+  	// Resize the video element to match the aspect ratio of the active track.
+  	// Finally, begin playback.
+  	var self = this;
+  	this.mediaPlayer_.load(source).then(function() {
+  		self.tech_.triggerReady();
+  		//player.selectTextTrack(55);
+    		//player.enableTextTrack(true);
+  		if(options['autoplay']){
+  			self.play();
+  		}
+  	});
 
     // Must run controller before these two lines or else there is no
     // element to bind to.
@@ -222,8 +222,10 @@
     this.resetSrc_(function noop(){});
   };
 
+  console.log("window.MediaSource",window.MediaSource);
   // Only add the SourceHandler if the browser supports MediaSourceExtensions
   if (!!window.MediaSource) {
+
     videojs.Html5.registerSourceHandler({
       canHandleSource: function (source) {
         var dashTypeRE = /^application\/dash\+xml/i;
@@ -243,6 +245,7 @@
       }
     }, 0);
   }
+  shaka.polyfill.installAll(); 
+  //videojs.Html5DashJS = Html5DashJS;
 
-  videojs.Html5DashJS = Html5DashJS;
 })(window, window.videojs);
